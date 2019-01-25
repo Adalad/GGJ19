@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
         NONE, CHOOSE, VOTE, WRITE, CHECK, REVEAL, FEEDBACK, RESULT
     }
 
-
     #region Singleton
 
     private static GameManager instance;
@@ -56,20 +55,25 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = States.NONE;
         NextState = States.CHOOSE;
-        StartStateDelegate += StartChooseState;
 
         MixerInteractive.GoInteractive();
+        MixerInteractive.SetCurrentScene("default");
     }
 
     private void Update()
     {
         if (CurrentState != NextState)
         {
+            UpdateStateDelegate = null;
             FinishStateDelegate?.Invoke();
+            FinishStateDelegate = null;
 
             CurrentState = NextState;
 
+            StartEvents();
+
             StartStateDelegate?.Invoke();
+            StartStateDelegate = null;
 
             return;
         }
@@ -101,15 +105,31 @@ public class GameManager : MonoBehaviour
         return CurrentMemory.VotingSymbols;
     }
 
+    public void SetupFinished()
+    {
+        NextState = States.VOTE;
+    }
+
     #endregion Public methods
 
     #region Private methods
 
+    private void StartEvents()
+    {
+        switch(CurrentState)
+        {
+            case States.CHOOSE:
+                StartStateDelegate = StartChooseState;
+                break;
+            case States.VOTE:
+                StartStateDelegate = StartVoteState;
+                break;
+        }
+    }
+
     private void StartChooseState()
     {
         CurrentMemory = MemoriesManager.Instance.GetRandomStory();
-
-        StartStateDelegate -= StartChooseState;
     }
 
     private void StartVoteState()
@@ -118,6 +138,11 @@ public class GameManager : MonoBehaviour
         {
             Votings[i] = 0;
         }
+
+        MixerInteractive.SetCurrentScene("voting");
+
+        UpdateStateDelegate = UpdateVoteState;
+        FinishStateDelegate = FinishVoteState;
     }
 
     private void UpdateVoteState()
@@ -138,6 +163,11 @@ public class GameManager : MonoBehaviour
         {
             Votings[3]++;
         }
+    }
+
+    private void FinishVoteState()
+    {
+        MixerInteractive.SetCurrentScene("default");
     }
 
     #endregion Private methods
