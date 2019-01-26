@@ -6,11 +6,13 @@ public class GameUI : MonoBehaviour
 {
     #region Public fields
 
-    public TMPro.TextMeshProUGUI MessageText;
+    public GameObject MessageText;
     public KeyButton[] KeyButtons;
     public GameObject[] MessagePrefabs;
     public GameObject MessagePanel;
     public ScrollRect Scroll;
+    public GameObject ImagePrefab;
+    public GameObject SendButton;
 
     #endregion Public fields
 
@@ -31,27 +33,37 @@ public class GameUI : MonoBehaviour
 
     public void SendMessage()
     {
+        if (Message.Count <= 0)
+        {
+            return;
+        }
+
         // Process message
+        SendButton.GetComponent<Button>().interactable = false;
         GameManager.Instance.InputSymbols(Message.ToArray());
+
     }
 
     public void KeyboardButton(KeyButton button)
     {
         Message.Add(button.Icon);
         button.DisableButton();
-        MessageText.text = MessageText.text + "<sprite=" + button.Icon + "> ";
+        GameObject image = LoadSprite(button.Icon);
+        image.transform.SetParent(MessageText.transform);
+        image.transform.localEulerAngles = Vector3.zero;
+        image.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void KeyboardDelete()
     {
-        if (Message.Count < 0)
+        if (Message.Count <= 0)
         {
             return;
         }
 
         int symbol = Message[Message.Count - 1];
         Message.RemoveAt(Message.Count - 1);
-        MessageText.text = string.Empty;
+        Destroy(MessageText.transform.GetChild(MessageText.transform.childCount - 1).gameObject);
         // Refresh buttons
         foreach (KeyButton button in KeyButtons)
         {
@@ -59,11 +71,6 @@ public class GameUI : MonoBehaviour
             {
                 button.EnableButton();
             }
-        }
-        // Rebuild message
-        foreach (int icon in Message)
-        {
-            MessageText.text = MessageText.text + "<sprite=" + icon + "> ";
         }
     }
 
@@ -85,16 +92,14 @@ public class GameUI : MonoBehaviour
             }
 
             int[] voting = GameManager.Instance.GetVotingSymbols();
-            string message = string.Empty;
-            for (int i = 0; i < voting.Length; ++i)
-            {
-                message = message + " " + i + "<sprite=" + voting[i] + "> ";
-            }
-
-            CreateMessage(false, message);
+            CreateMessage(false, voting);
 
             // Notify manager
             GameManager.Instance.ChooseFinished();
+        }
+        else if (state == States.WRITE)
+        {
+            SendButton.GetComponent<Button>().interactable = true;
         }
         else if (state == States.REVEAL)
         {
@@ -111,13 +116,28 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private void CreateMessage(bool isPlayer, string message)
+    private void CreateMessage(bool isPlayer, int[] icons)
     {
-        int i = isPlayer ? 0 : 1;
-        GameObject msgPanel = GameObject.Instantiate(MessagePrefabs[0]);
-        msgPanel.GetComponent<MessagePanel>().UpdateText(message);
-        msgPanel.transform.parent = MessagePanel.transform;
+        int p = isPlayer ? 0 : 1;
+        GameObject msgPanel = GameObject.Instantiate(MessagePrefabs[p]);
+        for (int i = 0; i < icons.Length; ++i)
+        {
+            GameObject go = LoadSprite(icons[i]);
+            go.transform.SetParent(msgPanel.transform);
+        }
+        msgPanel.transform.SetParent(MessagePanel.transform);
+        msgPanel.transform.localEulerAngles = Vector3.zero;
+        msgPanel.transform.localScale = new Vector3(1, 1, 1);
         Scroll.normalizedPosition = Vector2.zero;
+    }
+
+    private GameObject LoadSprite(int sprite)
+    {
+        Sprite mySprite = Resources.LoadAll<Sprite>("Sprites/Atlas")[sprite];
+        GameObject go = GameObject.Instantiate(ImagePrefab);
+        go.GetComponent<Image>().sprite = mySprite;
+
+        return go;
     }
 
     #endregion Private methods

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(TMPro.TextMeshProUGUI))]
+[RequireComponent(typeof(Image))]
 [RequireComponent(typeof(Button))]
 public class KeyButton : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class KeyButton : MonoBehaviour
 
     #region Private fields
 
-    private TMPro.TextMeshProUGUI TextComponent;
+    private Image ImageComponent;
     private Button ButtonComponent;
 
     #endregion Private fields
@@ -22,7 +22,7 @@ public class KeyButton : MonoBehaviour
 
     private void Start()
     {
-        TextComponent = GetComponent<TMPro.TextMeshProUGUI>();
+        ImageComponent = GetComponent<Image>();
         ButtonComponent = GetComponent<Button>();
     }
 
@@ -48,7 +48,7 @@ public class KeyButton : MonoBehaviour
         }
 
         Icon = icon;
-        TextComponent.text = "<sprite=" + icon + ">";
+        ImageComponent.sprite = Resources.LoadAll<Sprite>("Sprites/Atlas")[icon];
     }
 
     #endregion Public methods
