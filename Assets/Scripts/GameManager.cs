@@ -232,8 +232,30 @@ public class GameManager : MonoBehaviour
 
     private void StartCheckState()
     {
-        // TODO check written with current options
-        RevealedMemory = 0;
+        // Check written with current options
+        RevealedMemory = -1;
+        bool negative = false;
+        foreach (MemoryOption option in CurrentMemory.Options)
+        {
+            if (WrittenSymbols.Length != option.Symbols.Length)
+            {
+                continue;
+            }
+
+            for (int i = 0; i < option.Symbols.Length; ++i)
+            {
+                if (WrittenSymbols[i] != option.Symbols[i])
+                {
+
+                }
+            }
+
+            if (!negative)
+            {
+                RevealedMemory = option.Id;
+                break;
+            }
+        }
 
         NextState = States.REVEAL;
     }
