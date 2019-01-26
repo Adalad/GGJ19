@@ -6,6 +6,7 @@ public class Memory
 {
     #region Public fields
 
+    public string Description;
     public int[] InitialSymbols;
     public List<MemoryOption> Options;
     public int[] VotingSymbols;

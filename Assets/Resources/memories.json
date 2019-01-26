@@ -1,6 +1,7 @@
 {
     "Items": [
         {
+            "Description": "una",
             "InitialSymbols": [ 0, 1, 2 ],
             "Options": [
                 {
@@ -17,6 +18,7 @@
             "VotingSymbols": [ 0, 1, 2, 3 ]
         },
         {
+            "Description": "otra",
             "InitialSymbols": [ 3, 4, 5 ],
             "Options": [
                 {
