@@ -1,21 +1,28 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+public enum States
+{
+    NONE, CHOOSE, VOTE, WRITE, CHECK, REVEAL, FEEDBACK, RESULT
+}
+
 public class GameManager : MonoBehaviour
 {
-    private enum States
-    {
-        NONE, CHOOSE, VOTE, WRITE, CHECK, REVEAL, FEEDBACK, RESULT
-    }
-
     #region Singleton
 
     private static GameManager instance;
 
     public static GameManager Instance
     {
-        get;
-        private set;
+        get
+        {
+            return instance;
+        }
+
+        private set
+        {
+            instance = value;
+        }
     }
 
     private void Awake()
@@ -52,12 +59,19 @@ public class GameManager : MonoBehaviour
 
     #region Private events
 
-    private delegate void StateEvent();
-    private event StateEvent StartStateDelegate;
-    private event StateEvent UpdateStateDelegate;
-    private event StateEvent FinishStateDelegate;
+    private delegate void InternalStateEvent();
+    private event InternalStateEvent StartStateDelegate;
+    private event InternalStateEvent UpdateStateDelegate;
+    private event InternalStateEvent FinishStateDelegate;
 
     #endregion Private events
+
+    #region Public events
+
+    public delegate void StateEvent(States state);
+    public event StateEvent OnStartState;
+
+    #endregion Public events
 
     #region MonoBehaviour methods
 
@@ -84,6 +98,7 @@ public class GameManager : MonoBehaviour
 
             StartStateDelegate?.Invoke();
             StartStateDelegate = null;
+            OnStartState?.Invoke(CurrentState);
 
             return;
         }
