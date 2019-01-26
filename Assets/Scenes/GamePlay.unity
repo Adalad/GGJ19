@@ -944,6 +944,7 @@ MonoBehaviour:
   - {fileID: 2304272159272053814, guid: 93913e88a7f09da48a85e70df6393106, type: 3}
   - {fileID: 2308926204077993269, guid: b83fccf8483eb77419c745bfa1d3331c, type: 3}
   MessagePanel: {fileID: 1043923781}
+  Scroll: {fileID: 0}
 --- !u!1 &575707969
 GameObject:
   m_ObjectHideFlags: 0
