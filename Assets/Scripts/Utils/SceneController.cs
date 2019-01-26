@@ -10,7 +10,6 @@ public class SceneController : MonoBehaviour
     public float fadeDuration = 1f;
     public string startingSceneName = "Gameplay";
 
-
     private bool isFading;
     private IEnumerator Start()
     {

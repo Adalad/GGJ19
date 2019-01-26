@@ -20,6 +20,7 @@ public class GameUI : MonoBehaviour
 
     private int CurrentKey;
     private List<int> Message;
+    private int[] opts;
 
     #endregion Private fields
 
@@ -40,8 +41,19 @@ public class GameUI : MonoBehaviour
 
         // Process message
         SendButton.GetComponent<Button>().interactable = false;
-        GameManager.Instance.InputSymbols(Message.ToArray());
+        CreateMessage(true, Message.ToArray());
+        foreach (Transform child in MessageText.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
 
+        GameManager.Instance.InputSymbols(Message.ToArray());
+        Message.Clear();
+        foreach (KeyButton button in KeyButtons)
+        {
+            button.Icon = -1;
+            button.DisableButton();
+        }
     }
 
     public void KeyboardButton(KeyButton button)
@@ -82,7 +94,7 @@ public class GameUI : MonoBehaviour
     {
         if (state == States.CHOOSE)
         {
-            // TODO show symbols in UI
+            // Show symbols in UI
             CurrentKey = 0;
             int[] initial = GameManager.Instance.GetInitialSymbols();
             for (int i = 0; i < initial.Length; ++i)
@@ -92,6 +104,7 @@ public class GameUI : MonoBehaviour
             }
 
             int[] voting = GameManager.Instance.GetVotingSymbols();
+            opts = voting;
             CreateMessage(false, voting);
 
             // Notify manager
@@ -99,7 +112,23 @@ public class GameUI : MonoBehaviour
         }
         else if (state == States.WRITE)
         {
+            foreach (int option in opts)
+            {
+                foreach (KeyButton button in KeyButtons)
+                {
+                    if (button.Icon == -1)
+                    {
+                        button.UpdateIcon(option);
+                        break;
+                    }
+                }
+            }
+
             SendButton.GetComponent<Button>().interactable = true;
+            foreach (KeyButton button in KeyButtons)
+            {
+                button.EnableButton();
+            }
         }
         else if (state == States.REVEAL)
         {
@@ -133,6 +162,11 @@ public class GameUI : MonoBehaviour
 
     private GameObject LoadSprite(int sprite)
     {
+        if (sprite < 0)
+        {
+            return null;
+        }
+
         Sprite mySprite = Resources.LoadAll<Sprite>("Sprites/Atlas")[sprite];
         GameObject go = GameObject.Instantiate(ImagePrefab);
         go.GetComponent<Image>().sprite = mySprite;

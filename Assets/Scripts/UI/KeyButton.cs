@@ -32,7 +32,10 @@ public class KeyButton : MonoBehaviour
 
     public void EnableButton()
     {
-        ButtonComponent.interactable = true;
+        if (Icon != -1)
+        {
+            ButtonComponent.interactable = true;
+        }
     }
 
     public void DisableButton()

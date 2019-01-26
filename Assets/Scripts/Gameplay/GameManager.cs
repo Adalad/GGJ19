@@ -257,11 +257,13 @@ public class GameManager : MonoBehaviour
                 continue;
             }
 
+            negative = false;
             for (int i = 0; i < option.Symbols.Length; ++i)
             {
                 if (WrittenSymbols[i] != option.Symbols[i])
                 {
-
+                    negative = true;
+                    continue;
                 }
             }
 
