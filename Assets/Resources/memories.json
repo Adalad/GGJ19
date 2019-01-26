@@ -1,0 +1,36 @@
+{
+    "Items": [
+        {
+            "InitialSymbols": [ 0, 1, 2 ],
+            "Options": [
+                {
+                    "Id": 0,
+                    "Symbols": [ 0, 1, 0 ],
+                    "Emotion": 0
+                },
+                {
+                    "Id": 1,
+                    "Symbols": [ 0, 1, 0 ],
+                    "Emotion": 0
+                }
+            ],
+            "VotingSymbols": [ 0, 1, 2, 3 ]
+        },
+        {
+            "InitialSymbols": [ 3, 4, 5 ],
+            "Options": [
+                {
+                    "Id": 0,
+                    "Symbols": [ 6, 6, 6 ],
+                    "Emotion": 1
+                },
+                {
+                    "Id": 1,
+                    "Symbols": [ 7, 7, 7 ],
+                    "Emotion": 2
+                }
+            ],
+            "VotingSymbols": [ 6, 7, 8, 9 ]
+        }
+    ]
+}

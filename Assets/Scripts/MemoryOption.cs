@@ -1,4 +1,7 @@
-﻿public class MemoryOption
+﻿using System;
+
+[Serializable]
+public class MemoryOption
 {
     #region Public fields
 

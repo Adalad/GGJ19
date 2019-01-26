@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-public class MemoriesManager : MonoBehaviour
+public class MemoriesManager
 {
     #region Singleton
 
@@ -9,19 +10,18 @@ public class MemoriesManager : MonoBehaviour
 
     public static MemoriesManager Instance
     {
-        get;
-        private set;
-    }
+        get
+        {
+            if (instance == null)
+            {
+                instance = new MemoriesManager();
+            }
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
+            return instance;
         }
-        else if (instance != this)
+        private set
         {
-            Destroy(gameObject);
+            instance = value;
         }
     }
 
@@ -33,22 +33,20 @@ public class MemoriesManager : MonoBehaviour
 
     #endregion Public fields
 
-    #region MonoBehaviour methods
+    #region Constructor
 
-    private void Start()
+    private MemoriesManager()
     {
         MemoriesCollection = new List<Memory>();
 
-        // TODO ADD MEMORIES
-        Memory memory = new Memory(new int[] { 0, 1, 2 }, new int[] { 0, 1, 2, 3 });
-        MemoryOption option = new MemoryOption(0, new int[] { 0, 1, 0 }, Emotions.JOY);
-        memory.Options.Add(option);
-        option = new MemoryOption(1, new int[] { 0, 1, 0 }, Emotions.JOY);
-        memory.Options.Add(option);
-        MemoriesCollection.Add(memory);
+        string path = "Assets/Resources/memories.json";
+        StreamReader reader = new StreamReader(path);
+        Memory[] memories = JsonHelper.FromJson<Memory>(reader.ReadToEnd());
+        reader.Close();
+        MemoriesCollection = new List<Memory>(memories);
     }
 
-    #endregion MonoBehaviour methods
+    #endregion Constructor
 
     #region Public methods
 
