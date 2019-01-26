@@ -2,6 +2,7 @@
 {
     #region Public fields
 
+    public int Id;
     public int[] Symbols;
     public Emotions Emotion;
 
@@ -9,8 +10,9 @@
 
     #region Constructor
 
-    public MemoryOption(int[] symbols, Emotions emotion)
+    public MemoryOption(int id, int[] symbols, Emotions emotion)
     {
+        Id = id;
         Symbols = symbols;
         Emotion = emotion;
     }

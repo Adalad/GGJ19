@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,12 +32,21 @@ public class GameManager : MonoBehaviour
 
     #endregion Singleton
 
+    #region Public fields
+
+    public float VotingTime = 15;
+    public float FeedbackTime = 15;
+
+    #endregion Public fields
+
     #region Private fields
 
     private States CurrentState;
     private States NextState;
     private int[] Votings = new int[4];
     private Memory CurrentMemory;
+    private int[] WrittenSymbols;
+    private int RevealedMemory;
 
     #endregion Private fields
 
@@ -85,14 +95,15 @@ public class GameManager : MonoBehaviour
 
     #region Public methods
 
-    public int InputSymbols(int[] symbols)
+    public void InputSymbols(int[] symbols)
     {
         if (CurrentState != States.WRITE)
         {
-            return -1;
+            return;
         }
 
-        return -1;
+        WrittenSymbols = symbols;
+        NextState = States.CHECK;
     }
 
     public int[] GetInitialSymbols()
@@ -105,9 +116,44 @@ public class GameManager : MonoBehaviour
         return CurrentMemory.VotingSymbols;
     }
 
-    public void SetupFinished()
+    public void ChooseFinished()
     {
+        if (CurrentState != States.CHOOSE)
+        {
+            return;
+        }
+
         NextState = States.VOTE;
+    }
+
+    public int GetRevealedMemory()
+    {
+        return RevealedMemory;
+    }
+
+    public void RevealFinished()
+    {
+        if (CurrentState != States.REVEAL)
+        {
+            return;
+        }
+
+        NextState = States.FEEDBACK;
+    }
+
+    public int[] GetFeedbackResult()
+    {
+        return new int[] { Votings[0], Votings[1] };
+    }
+
+    public void ResultFinished()
+    {
+        if (CurrentState != States.RESULT)
+        {
+            return;
+        }
+
+        NextState = States.CHOOSE;
     }
 
     #endregion Public methods
@@ -116,13 +162,19 @@ public class GameManager : MonoBehaviour
 
     private void StartEvents()
     {
-        switch(CurrentState)
+        switch (CurrentState)
         {
             case States.CHOOSE:
                 StartStateDelegate = StartChooseState;
                 break;
             case States.VOTE:
                 StartStateDelegate = StartVoteState;
+                break;
+            case States.CHECK:
+                StartStateDelegate = StartCheckState;
+                break;
+            case States.FEEDBACK:
+                StartStateDelegate = StartFeedbackState;
                 break;
         }
     }
@@ -140,6 +192,7 @@ public class GameManager : MonoBehaviour
         }
 
         MixerInteractive.SetCurrentScene("voting");
+        StartCoroutine(VotingCountDown());
 
         UpdateStateDelegate = UpdateVoteState;
         FinishStateDelegate = FinishVoteState;
@@ -168,6 +221,58 @@ public class GameManager : MonoBehaviour
     private void FinishVoteState()
     {
         MixerInteractive.SetCurrentScene("default");
+    }
+
+    private IEnumerator VotingCountDown()
+    {
+        yield return new WaitForSeconds(VotingTime);
+
+        NextState = States.WRITE;
+    }
+
+    private void StartCheckState()
+    {
+        // TODO check written with current options
+        RevealedMemory = 0;
+
+        NextState = States.REVEAL;
+    }
+
+    private void StartFeedbackState()
+    {
+        for (int i = 0; i < Votings.Length; ++i)
+        {
+            Votings[i] = 0;
+        }
+
+        MixerInteractive.SetCurrentScene("feedback");
+        StartCoroutine(FeedbackCountDown());
+        UpdateStateDelegate = UpdateFeedbackState;
+        FinishStateDelegate = FinishFeedbackState;
+    }
+
+    private void UpdateFeedbackState()
+    {
+        if (MixerInteractive.GetButton("Good"))
+        {
+            Votings[0]++;
+        }
+        if (MixerInteractive.GetButton("Bad"))
+        {
+            Votings[1]++;
+        }
+    }
+
+    private void FinishFeedbackState()
+    {
+        MixerInteractive.SetCurrentScene("default");
+    }
+
+    private IEnumerator FeedbackCountDown()
+    {
+        yield return new WaitForSeconds(FeedbackTime);
+
+        NextState = States.RESULT;
     }
 
     #endregion Private methods

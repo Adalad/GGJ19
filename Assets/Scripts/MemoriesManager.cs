@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class MemoriesManager : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class MemoriesManager : MonoBehaviour
         }
         else if (instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -39,11 +39,11 @@ public class MemoriesManager : MonoBehaviour
     {
         MemoriesCollection = new List<Memory>();
 
-        // ADD MEMORIES
+        // TODO ADD MEMORIES
         Memory memory = new Memory(new int[] { 0, 1, 2 }, new int[] { 0, 1, 2, 3 });
-        MemoryOption option = new MemoryOption(new int[] { 0, 1, 0 }, Emotions.JOY);
+        MemoryOption option = new MemoryOption(0, new int[] { 0, 1, 0 }, Emotions.JOY);
         memory.Options.Add(option);
-        option = new MemoryOption(new int[] { 0, 1, 0 }, Emotions.JOY);
+        option = new MemoryOption(1, new int[] { 0, 1, 0 }, Emotions.JOY);
         memory.Options.Add(option);
         MemoriesCollection.Add(memory);
     }
@@ -55,7 +55,7 @@ public class MemoriesManager : MonoBehaviour
     public Memory GetRandomStory()
     {
         int random = Random.Range(0, MemoriesCollection.Count);
-        Memory memory =  MemoriesCollection[random];
+        Memory memory = MemoriesCollection[random];
         MemoriesCollection.RemoveAt(random);
         return memory;
     }

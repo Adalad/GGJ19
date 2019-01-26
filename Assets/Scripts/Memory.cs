@@ -2,9 +2,15 @@
 
 public class Memory
 {
+    #region Public fields
+
     public int[] InitialSymbols;
     public List<MemoryOption> Options;
     public int[] VotingSymbols;
+
+    #endregion Public fields
+
+    #region Constructor
 
     public Memory(int[] initialSymbols, int[] votingSymbols)
     {
@@ -12,4 +18,6 @@ public class Memory
         Options = new List<MemoryOption>();
         VotingSymbols = votingSymbols;
     }
+
+    #endregion Constructor
 }
