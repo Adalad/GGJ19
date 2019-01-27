@@ -167,12 +167,12 @@
             "Options": [
                 {
                     "Id": 0,
-                    "Symbols": [ 266, 304, 3, 38 ],
+                    "Symbols": [ 266, 304, 38 ],
                     "Emotion": 0
                 },
                 {
                     "Id": 1,
-                    "Symbols": [ 266, 304, 33, 573 ],
+                    "Symbols": [ 266, 304, 573 ],
                     "Emotion": 2
                 }
             ],
