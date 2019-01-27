@@ -163,20 +163,20 @@
         },
 	{
             "Description": "vacaciones",
-            "InitialSymbols": [ 266, 304 ],
+            "InitialSymbols": [ 573, 266 ],
             "Options": [
                 {
                     "Id": 0,
-                    "Symbols": [ 266, 304, 38 ],
+                    "Symbols": [ 573, 266, 304 ],
                     "Emotion": 0
                 },
                 {
                     "Id": 1,
-                    "Symbols": [ 266, 304, 573 ],
+                    "Symbols": [ 573, 266, 33 ],
                     "Emotion": 2
                 }
             ],
-            "VotingSymbols": [ 38, 573 ]
+            "VotingSymbols": [ 304, 33 ]
         },
 	{
             "Description": "accidente_coche",
