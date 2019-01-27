@@ -4,6 +4,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
+    #region Singleton
+
+    private static SceneController instance;
+
+    public static SceneController Instance
+    {
+        get
+        {
+            return instance;
+        }
+
+        private set
+        {
+            instance = value;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    #endregion Singleton
+
     public event Action BeforeSceneUnload;
     public event Action AfterSceneLoad;
     public CanvasGroup faderCanvasGroup;

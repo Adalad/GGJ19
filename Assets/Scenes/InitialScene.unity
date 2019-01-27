@@ -319,7 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faderCanvasGroup: {fileID: 112866532}
   fadeDuration: 1
-  startingSceneName: Gameplay
+  startingSceneName: MainMenu
 --- !u!4 &789149921
 Transform:
   m_ObjectHideFlags: 0

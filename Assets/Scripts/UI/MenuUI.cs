@@ -1,10 +1,26 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
+    public GameObject CreditsPanel;
+
     public void GoToGame()
     {
-        SceneManager.LoadScene("InitialScene");
+        SceneController.Instance.FadeAndLoadScene("GamePlay");
+    }
+
+    public void CreditsToggle()
+    {
+        if (CreditsPanel == null)
+        {
+            return;
+        }
+
+        CreditsPanel.SetActive(!CreditsPanel.activeSelf);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
