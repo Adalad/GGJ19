@@ -2,47 +2,47 @@
     "Items": [
         {
             "Description": "primer_beso_chico",
-            "InitialSymbols": [ 104, 64],
+            "InitialSymbols": [ 64, 104],
             "Options": [
                 {
                     "Id": 0,
-                    "Symbols": [ 64, 65, 104, 38],
+                    "Symbols": [ 64, 104, 65],
                     "Emotion": 0
                 },
                 {
                     "Id": 1,
-                    "Symbols": [ 64, 104, 214],
+                    "Symbols": [ 64, 104, 64],
                     "Emotion": 1
                 },
  		{
                     "Id": 2,
-                    "Symbols": [ 64, 64, 104, 32],
+                    "Symbols": [ 64, 104, 215],
                     "Emotion": 3
                 }
             ],
-            "VotingSymbols": [ 65, 64, 214]
+            "VotingSymbols": [ 65, 64, 215]
         },
 {
             "Description": "primer_beso_chica",
-            "InitialSymbols": [ 104, 65],
+            "InitialSymbols": [ 65, 104],
             "Options": [
                 {
                     "Id": 0,
-                    "Symbols": [ 65, 64, 104, 38],
+                    "Symbols": [ 65, 104, 64],
                     "Emotion": 0
                 },
                 {
                     "Id": 1,
-                    "Symbols": [ 65, 104, 214],
+                    "Symbols": [ 65, 104, 65],
                     "Emotion": 1
                 },
  		{
                     "Id": 2,
-                    "Symbols": [ 65, 65, 104, 32],
+                    "Symbols": [ 65, 104, 215],
                     "Emotion": 3
                 }
             ],
-            "VotingSymbols": [ 65, 64, 214]
+            "VotingSymbols": [ 65, 64, 215]
         },
         {
             "Description": "boda",
@@ -73,16 +73,16 @@
      	},
 	{
             "Description": "desengaño_amoroso",
-            "InitialSymbols": [ 172 ],
+            "InitialSymbols": [ 173 ],
             "Options": [
                 {
                     "Id": 0,
-                    "Symbols": [ 172, 23 ],
+                    "Symbols": [ 173, 23 ],
                     "Emotion": 1
                 },
                 {
                     "Id": 1,
-                    "Symbols": [ 172, 33 ],
+                    "Symbols": [ 173, 33 ],
                     "Emotion": 2
                 }
             ],
@@ -107,20 +107,20 @@
         },
 	{
             "Description": "sexo",
-            "InitialSymbols": [ 522, 528 ],
+            "InitialSymbols": [ 526, 532 ],
             "Options": [
                 {
                     "Id": 0,
-                    "Symbols": [ 522, 528, 561 ],
+                    "Symbols": [ 526, 532, 561 ],
                     "Emotion": 0
                 },
                 {
                     "Id": 1,
-                    "Symbols": [ 522, 528, 46 ],
+                    "Symbols": [ 526, 532, 46 ],
                     "Emotion": 3
                 }
             ],
-            "VotingSymbols": [ 561, 46 ]
+            "VotingSymbols": [ 565, 46 ]
         },
 	{
             "Description": "aborto",
@@ -146,16 +146,16 @@
         },
 	{
             "Description": "graduación",
-            "InitialSymbols": [ 307 ],
+            "InitialSymbols": [ 309 ],
             "Options": [
                 {
                     "Id": 0,
-                    "Symbols": [ 307, 3 ],
+                    "Symbols": [ 309, 3 ],
                     "Emotion": 0
                 },
                 {
                     "Id": 1,
-                    "Symbols": [ 307, 32 ],
+                    "Symbols": [ 309, 32 ],
                     "Emotion": 2
                 }
             ],
@@ -163,20 +163,20 @@
         },
 	{
             "Description": "vacaciones",
-            "InitialSymbols": [ 307 ],
+            "InitialSymbols": [ 266, 304 ],
             "Options": [
                 {
                     "Id": 0,
-                    "Symbols": [ 307, 3 ],
+                    "Symbols": [ 266, 304, 3, 38 ],
                     "Emotion": 0
                 },
                 {
                     "Id": 1,
-                    "Symbols": [ 307, 32 ],
+                    "Symbols": [ 266, 304, 33, 573 ],
                     "Emotion": 2
                 }
             ],
-            "VotingSymbols": [ 3, 32 ]
+            "VotingSymbols": [ 38, 573 ]
         },
 	{
             "Description": "accidente_coche",
