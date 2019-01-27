@@ -103,23 +103,26 @@ public class GameUI : MonoBehaviour
                 CurrentKey++;
             }
 
-            int[] voting = GameManager.Instance.GetVotingSymbols();
-            opts = voting;
-            CreateMessage(false, voting);
+            opts = GameManager.Instance.GetVotingSymbols();
+            CreateMessage(false, opts);
 
             // Notify manager
             GameManager.Instance.ChooseFinished();
         }
         else if (state == States.WRITE)
         {
-            foreach (int option in opts)
+            int[] votes = GameManager.Instance.GetVotingResult();
+            for (int i = 0; i < votes.Length; ++i)
             {
-                foreach (KeyButton button in KeyButtons)
+                if (votes[i] > 0)
                 {
-                    if (button.Icon == -1)
+                    foreach (KeyButton button in KeyButtons)
                     {
-                        button.UpdateIcon(option);
-                        break;
+                        if (button.Icon == -1)
+                        {
+                            button.UpdateIcon(opts[i]);
+                            break;
+                        }
                     }
                 }
             }
@@ -130,16 +133,24 @@ public class GameUI : MonoBehaviour
                 button.EnableButton();
             }
         }
-        else if (state == States.REVEAL)
-        {
-            // TODO show memory result in UI
-            // Notify manager
-            GameManager.Instance.RevealFinished();
-        }
         else if (state == States.RESULT)
         {
-            // TODO show feedback result in UI
-            GameManager.Instance.GetFeedbackResult();
+            // Show feedback result in UI
+            int[] feedback = GameManager.Instance.GetFeedbackResult();
+
+            if (feedback[0] > feedback[1])
+            {
+                CreateMessage(false, new int[] { 3 });
+            }
+            else if (feedback[0] > feedback[1])
+            {
+                CreateMessage(false, new int[] { 23 });
+            }
+            else
+            {
+                CreateMessage(false, new int[] { 51 });
+            }
+
             // Notify manager
             GameManager.Instance.ResultFinished();
         }

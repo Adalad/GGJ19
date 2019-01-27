@@ -131,6 +131,11 @@ public class GameManager : MonoBehaviour
         return CurrentMemory.VotingSymbols;
     }
 
+    public int[] GetVotingResult()
+    {
+        return Votings;
+    }
+
     public void ChooseFinished()
     {
         if (CurrentState != States.CHOOSE)
