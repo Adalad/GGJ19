@@ -171,34 +171,12 @@
                     "Emotion": 0
                 },
                 {
-                    "Id": 1,
+                    "Id": 18,
                     "Symbols": [ 573, 266, 33 ],
                     "Emotion": 2
                 }
             ],
             "VotingSymbols": [ 304, 33 ]
-        },
-	{
-            "Description": "accidente_coche",
-            "InitialSymbols": [ 589, 310 ],
-            "Options": [
-                {
-                    "Id": 0,
-                    "Symbols": [ 589, 310, 23 ],
-                    "Emotion": 1
-                },
-                {
-                    "Id": 1,
-                    "Symbols": [ 589, 310, 33 ],
-                    "Emotion": 2
-                },
-                {
-                    "Id": 1,
-                    "Symbols": [ 589, 310, 32 ],
-                    "Emotion": 3
-                }
-            ],
-            "VotingSymbols": [ 23, 33, 32 ]
         }
     ]
 }
