@@ -5,17 +5,17 @@
             "InitialSymbols": [ 64, 104],
             "Options": [
                 {
-                    "Id": 0,
+                    "Id": 4,
                     "Symbols": [ 64, 104, 65],
                     "Emotion": 0
                 },
                 {
-                    "Id": 1,
+                    "Id": 3,
                     "Symbols": [ 64, 104, 64],
                     "Emotion": 1
                 },
  		{
-                    "Id": 2,
+                    "Id": 6,
                     "Symbols": [ 64, 104, 215],
                     "Emotion": 3
                 }
@@ -27,17 +27,17 @@
             "InitialSymbols": [ 65, 104],
             "Options": [
                 {
-                    "Id": 0,
+                    "Id": 4,
                     "Symbols": [ 65, 104, 64],
                     "Emotion": 0
                 },
                 {
-                    "Id": 1,
+                    "Id": 7,
                     "Symbols": [ 65, 104, 65],
                     "Emotion": 1
                 },
  		{
-                    "Id": 2,
+                    "Id": 5,
                     "Symbols": [ 65, 104, 215],
                     "Emotion": 3
                 }
@@ -49,12 +49,12 @@
             "InitialSymbols": [ 139, 181 ],
             "Options": [
                 {
-                    "Id": 0,
+                    "Id": 11,
                     "Symbols": [ 139, 181, 3 ],
                     "Emotion": 0
                 },
                 {
-                    "Id": 1,
+                    "Id": 12,
                     "Symbols": [ 139, 181, 23 ],
                     "Emotion": 1
                 },
@@ -64,7 +64,7 @@
                     "Emotion": 2
                 },
                 {
-                    "Id": 1,
+                    "Id": 10,
                     "Symbols": [ 139, 181, 32 ],
                     "Emotion": 3
                 }
@@ -76,7 +76,7 @@
             "InitialSymbols": [ 173 ],
             "Options": [
                 {
-                    "Id": 0,
+                    "Id": 2,
                     "Symbols": [ 173, 23 ],
                     "Emotion": 1
                 },
@@ -93,12 +93,12 @@
             "InitialSymbols": [ 188, 87 ],
             "Options": [
                 {
-                    "Id": 0,
+                    "Id": 16,
                     "Symbols": [ 188, 87, 23 ],
                     "Emotion": 1
                 },
                 {
-                    "Id": 1,
+                    "Id": 15,
                     "Symbols": [ 188, 87, 33 ],
                     "Emotion": 2
                 }
@@ -127,17 +127,17 @@
             "InitialSymbols": [ 63, 87 ],
             "Options": [
                 {
-                    "Id": 0,
+                    "Id": 9,
                     "Symbols": [ 63, 87, 142 ],
                     "Emotion": 1
                 },
                 {
-                    "Id": 1,
+                    "Id": 8,
                     "Symbols": [ 63, 87, 33 ],
                     "Emotion": 2
                 },
                 {
-                    "Id": 1,
+                    "Id": 0,
                     "Symbols": [ 63, 87, 32 ],
                     "Emotion": 3
                 }
@@ -149,14 +149,14 @@
             "InitialSymbols": [ 309 ],
             "Options": [
                 {
-                    "Id": 0,
+                    "Id": 14,
                     "Symbols": [ 309, 3 ],
                     "Emotion": 0
                 },
                 {
-                    "Id": 1,
+                    "Id": 13,
                     "Symbols": [ 309, 32 ],
-                    "Emotion": 2
+                    "Emotion": 3
                 }
             ],
             "VotingSymbols": [ 3, 32 ]
@@ -166,7 +166,7 @@
             "InitialSymbols": [ 573, 266 ],
             "Options": [
                 {
-                    "Id": 0,
+                    "Id": 17,
                     "Symbols": [ 573, 266, 304 ],
                     "Emotion": 0
                 },
