@@ -72,7 +72,7 @@
             "VotingSymbols": [ 3, 23, 32, 33 ]
      	},
 	{
-            "Description": "desengaño_amoroso",
+            "Description": "desengaï¿½o_amoroso",
             "InitialSymbols": [ 173 ],
             "Options": [
                 {
@@ -110,12 +110,12 @@
             "InitialSymbols": [ 526, 532 ],
             "Options": [
                 {
-                    "Id": 0,
+                    "Id": 19,
                     "Symbols": [ 526, 532, 561 ],
                     "Emotion": 0
                 },
                 {
-                    "Id": 1,
+                    "Id": 20,
                     "Symbols": [ 526, 532, 46 ],
                     "Emotion": 3
                 }
@@ -145,7 +145,7 @@
             "VotingSymbols": [ 142, 33, 32 ]
         },
 	{
-            "Description": "graduación",
+            "Description": "graduaciï¿½n",
             "InitialSymbols": [ 309 ],
             "Options": [
                 {
